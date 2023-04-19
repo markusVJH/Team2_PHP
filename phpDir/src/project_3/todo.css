@@ -1,5 +1,5 @@
 body {
-  background-color: #f6f6f6;
+  background-color: #5ea2bd;
   font-family: Arial, sans-serif;
 }
 .container {
@@ -43,12 +43,11 @@ button {
   cursor: pointer;
 }
 .todo-card {
-  border: 1px solid #ddd;
   border-radius: 4px;
   padding: 20px;
   margin-bottom: 10px;
   position: relative;
-  background-color: salmon;
+  background-color: #ffffff;
 }
 
 h3 {

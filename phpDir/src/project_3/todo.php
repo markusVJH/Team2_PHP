@@ -14,7 +14,6 @@ if(isset($_POST['create_todo'])) {
 
   $sql = "INSERT INTO tasks (title, description) VALUES ('$title', '$description')";
   if($conn->query($sql) === TRUE) {
-    echo '<script>alert("Todo created successfully")</script>';
   } else {
       echo "Error creating todo: " . $conn->error;
   }
@@ -27,7 +26,6 @@ if(isset($_POST['update_todo'])) {
 
   $sql = "UPDATE tasks SET title='$title', description='$description' WHERE id='$id'";
   if($conn->query($sql) === TRUE) {
-    echo '<script>alert("Todo updated successfully")</script>';
   } else {
       echo "Error updating todo: " . $conn->error;
   }
@@ -38,7 +36,6 @@ if(isset($_POST['delete_todo'])) {
 
   $sql = "DELETE FROM tasks WHERE id='$id'";
   if($conn->query($sql) === TRUE) {
-    echo '<script>alert("Todo deleted successfully")</script>';
   } else {
       echo "Error deleting todo: " . $conn->error;
   }
@@ -86,6 +83,9 @@ $conn->close();
 </style>
 </head>
 <body>
+<?php
+
+?>
     <div class="todo-container">
         <?php
         if ($result === false) {
@@ -109,7 +109,6 @@ $conn->close();
               ";
             }
           } else {
-              echo "No tasks found";
           }
         }
         ?>
