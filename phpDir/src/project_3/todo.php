@@ -12,7 +12,7 @@ if(isset($_POST['create_todo'])) {
   $title = $_POST['title'];
   $description = $_POST['description'];
 
-  $sql = "INSERT INTO tasks (title, description) VALUES ('$title', '$description')";
+  $sql = "INSERT INTO tasks (title, description) VALUES ('$title', \"$description\")";
   if($conn->query($sql) === TRUE) {
   } else {
       echo "Error creating todo: " . $conn->error;
