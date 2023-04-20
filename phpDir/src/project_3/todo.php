@@ -12,7 +12,7 @@ if(isset($_POST['create_todo'])) {
   $title = $_POST['title'];
   $description = $_POST['description'];
 
-  $sql = "INSERT INTO tasks (title, description) VALUES ('$title', '$description')";
+  $sql = "INSERT INTO tasks (title, description) VALUES ('$title', \"$description\")";
   if($conn->query($sql) === TRUE) {
     echo '<script>alert("Todo created successfully")</script>';
   } else {
@@ -25,7 +25,7 @@ if(isset($_POST['update_todo'])) {
   $title = $_POST['title'];
   $description = $_POST['description'];
 
-  $sql = "UPDATE tasks SET title='$title', description=\"$description\" WHERE id='$id'";
+  $sql = "UPDATE tasks SET title='$title', description='$description' WHERE id='$id'";
   if($conn->query($sql) === TRUE) {
     echo '<script>alert("Todo updated successfully")</script>';
   } else {
