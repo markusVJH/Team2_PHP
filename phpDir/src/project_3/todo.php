@@ -25,7 +25,7 @@ if(isset($_POST['update_todo'])) {
   $title = $_POST['title'];
   $description = $_POST['description'];
 
-  $sql = "UPDATE tasks SET title='$title', description='$description' WHERE id='$id'";
+  $sql = "UPDATE tasks SET title='$title', description=\"$description\" WHERE id='$id'";
   if($conn->query($sql) === TRUE) {
     echo '<script>alert("Todo updated successfully")</script>';
   } else {
