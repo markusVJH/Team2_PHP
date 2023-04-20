@@ -13,10 +13,7 @@ if(isset($_POST['create_todo'])) {
   $description = $_POST['description'];
 
   $sql = "INSERT INTO tasks (title, description) VALUES ('$title', \"$description\")";
-  if($conn->query($sql) === TRUE) {
-  } else {
-      echo "Error creating todo: " . $conn->error;
-  }
+  $conn->query($sql);
 }
 
 if(isset($_POST['update_todo'])) {
@@ -25,20 +22,14 @@ if(isset($_POST['update_todo'])) {
   $description = $_POST['description'];
 
   $sql = "UPDATE tasks SET title='$title', description='$description' WHERE id='$id'";
-  if($conn->query($sql) === TRUE) {
-  } else {
-      echo "Error updating todo: " . $conn->error;
-  }
+  $conn->query($sql);
 }
 
 if(isset($_POST['delete_todo'])) {
   $id = $_POST['id'];
 
   $sql = "DELETE FROM tasks WHERE id='$id'";
-  if($conn->query($sql) === TRUE) {
-  } else {
-      echo "Error deleting todo: " . $conn->error;
-  }
+  $conn->query($sql);
 }
 
 //display editing options when clicking edit
@@ -46,11 +37,7 @@ if(isset($_POST['edit_todo'])) {
   $id = $_POST['id'];
   $sql = "SELECT * FROM tasks WHERE id='$id'";
   $result = $conn->query($sql);
-  if ($result === false) {
-    echo "Error fetching task: " . $conn->error;
-  } else {
-    if ($result->num_rows > 0) {
-      $row = $result->fetch_assoc();
+  $row = $result->fetch_assoc();
       echo "<div class='container'>
               <form method='POST' id='editform'>
                 <h3>Edit this todo task:</h3>
@@ -62,15 +49,9 @@ if(isset($_POST['edit_todo'])) {
                 <button type='submit' name='update_todo'>Update Todo</button>
               </form>
             </div>";
-    } else {
-      echo "Task not found";
-    }
-  }
 }
-
 // display all tasks
-$sql = "SELECT * FROM tasks";
-$result = $conn->query($sql);
+$result = $conn->query("SELECT * FROM tasks");
 
 $conn->close();
 ?>
@@ -83,15 +64,8 @@ $conn->close();
 </style>
 </head>
 <body>
-<?php
-
-?>
     <div class="todo-container">
         <?php
-        if ($result === false) {
-          echo "Error fetching tasks: " . $conn->error;
-        } else {
-          if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
               echo "
                   <div class='todo-card'>
@@ -108,9 +82,6 @@ $conn->close();
                   </div>
               ";
             }
-          } else {
-          }
-        }
         ?>
     </div>
   <div class="container">
